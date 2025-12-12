@@ -1,7 +1,7 @@
-FROM node:20-alpine AS base
+FROM node:20-alpine AS builder
 
-# Install pnpm
-RUN corepack enable && corepack prepare pnpm@8 --activate
+# Install pnpm globally
+RUN npm install -g pnpm@8
 
 WORKDIR /app
 
@@ -10,7 +10,7 @@ COPY package.json pnpm-workspace.yaml pnpm-lock.yaml ./
 COPY packages/shared/package.json ./packages/shared/
 COPY apps/backend/package.json ./apps/backend/
 
-# Install dependencies
+# Install all dependencies
 RUN pnpm install --frozen-lockfile
 
 # Copy source code
@@ -18,22 +18,23 @@ COPY packages/shared ./packages/shared
 COPY apps/backend ./apps/backend
 COPY tsconfig.json ./
 
-# Build shared package
+# Build shared package first
 RUN pnpm --filter @maplelaw/shared build
 
 # Build backend
 RUN pnpm --filter @maplelaw/backend build
 
-# Production image
+# Production image - minimal
 FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Copy built artifacts
-COPY --from=base /app/apps/backend/dist ./dist
-COPY --from=base /app/apps/backend/package.json ./
-COPY --from=base /app/node_modules ./node_modules
-COPY --from=base /app/packages ./packages
+# Copy only what's needed for production
+COPY --from=builder /app/apps/backend/dist ./dist
+COPY --from=builder /app/apps/backend/package.json ./package.json
+
+# Install production dependencies only (no pnpm needed)
+RUN npm install --omit=dev
 
 # Create uploads directory
 RUN mkdir -p /app/uploads
@@ -43,4 +44,5 @@ ENV PORT=3001
 
 EXPOSE 3001
 
+# Run with node directly
 CMD ["node", "dist/main.js"]
