@@ -15,7 +15,7 @@ services:
     runtime: node
     region: oregon
     plan: free
-    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/backend build
+    buildCommand: npm install -g pnpm && pnpm install && cd packages/shared && pnpm build && cd ../../apps/backend && pnpm build
     startCommand: cd apps/backend && node dist/main.js
     envVars:
       - key: NODE_ENV
@@ -37,7 +37,7 @@ services:
     runtime: node
     region: oregon
     plan: free
-    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/frontend build
+    buildCommand: npm install -g pnpm && pnpm install && cd packages/shared && pnpm build && cd ../../apps/frontend && pnpm build
     startCommand: cd apps/frontend && npm start
     envVars:
       - key: NODE_ENV
