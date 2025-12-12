@@ -35,7 +35,7 @@ import { ComplianceModule } from './modules/compliance/compliance.module';
                         type: 'postgres' as const,
                         url: databaseUrl,
                         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-                        synchronize: false,
+                        synchronize: true, // Auto-create tables on first deploy
                         logging: configService.get('NODE_ENV') === 'development',
                         ssl: configService.get('NODE_ENV') === 'production'
                             ? { rejectUnauthorized: false }
