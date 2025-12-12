@@ -1,47 +1,36 @@
-import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-} from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
-export type AuditOperation = 'create' | 'read' | 'update' | 'delete';
+export type AuditOperation = 'create' | 'read' | 'update' | 'delete' | 'login' | 'logout' | 'other';
 
 @Entity('audit_logs')
 export class AuditLog {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    @Column({ name: 'firm_id' })
-    firmId: string;
+  @Column({ nullable: true })
+  firmId: string; // Compliance logs belong to a firm
 
-    @Column({ name: 'user_id', nullable: true })
-    userId: string;
+  @Column({ nullable: true })
+  userId: string; // user who performed the action
 
-    @Column({ name: 'entity_type', length: 100 })
-    entityType: string;
+  @Column()
+  operation: string; // 'create', 'update', 'delete', ...
 
-    @Column({ name: 'entity_id', nullable: true })
-    entityId: string;
+  @Column()
+  entityType: string; // 'Client', 'Matter', etc.
 
-    @Column({
-        type: 'enum',
-        enum: ['create', 'read', 'update', 'delete'],
-    })
-    operation: AuditOperation;
+  @Column({ nullable: true })
+  entityId: string; // ID of the specific resource
 
-    @Column({ name: 'old_values', type: 'jsonb', nullable: true })
-    oldValues: Record<string, unknown>;
+  @Column({ type: 'jsonb', nullable: true })
+  metadata: Record<string, any>;
 
-    @Column({ name: 'new_values', type: 'jsonb', nullable: true })
-    newValues: Record<string, unknown>;
+  @Column({ nullable: true })
+  ipAddress: string;
 
-    @Column({ name: 'ip_address', type: 'inet', nullable: true })
-    ipAddress: string;
+  @Column({ nullable: true })
+  userAgent: string;
 
-    @Column({ name: 'user_agent', type: 'text', nullable: true })
-    userAgent: string;
-
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 }

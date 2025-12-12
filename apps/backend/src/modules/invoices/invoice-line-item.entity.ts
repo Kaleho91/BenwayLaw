@@ -47,6 +47,9 @@ export class InvoiceLineItem {
     @Column({ name: 'sort_order', default: 0 })
     sortOrder: number;
 
+    @Column({ default: true })
+    taxable: boolean;
+
     // Relations
     @ManyToOne(() => Invoice, (invoice) => invoice.lineItems, { onDelete: 'CASCADE' })
     @JoinColumn({ name: 'invoice_id' })

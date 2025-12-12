@@ -7,6 +7,7 @@ import { Payment } from './payment.entity';
 import { Client } from '../clients/client.entity';
 import { Firm } from '../firms/firm.entity';
 import { TimeEntry } from '../time-entries/time-entry.entity';
+import { Expense } from '../expenses/expense.entity';
 import {
     CreateInvoiceDto,
     UpdateInvoiceDto,
@@ -57,6 +58,8 @@ export class InvoicesService {
         private readonly firmRepo: Repository<Firm>,
         @InjectRepository(TimeEntry)
         private readonly timeEntryRepo: Repository<TimeEntry>,
+        @InjectRepository(Expense)
+        private readonly expenseRepo: Repository<Expense>,
     ) { }
 
     /**
@@ -114,7 +117,30 @@ export class InvoicesService {
                     rate: Number(entry.rate),
                     amount: Number(entry.hours) * Number(entry.rate),
                     timeEntryId: entry.id,
-                    sortOrder: i,
+                    sortOrder: lineItems.length,
+                });
+                lineItems.push(lineItem);
+            }
+        }
+
+        // Create line items from expenses if provided
+        if (dto.expenseIds && dto.expenseIds.length > 0) {
+            const expenses = await this.expenseRepo.find({
+                where: { id: In(dto.expenseIds), firmId, billable: true, billed: false },
+            });
+
+            for (let i = 0; i < expenses.length; i++) {
+                const expense = expenses[i];
+                const lineItem = this.lineItemRepo.create({
+                    invoiceId: invoice.id,
+                    lineType: 'expense',
+                    description: `Expense: ${expense.description}`,
+                    quantity: 1,
+                    rate: Number(expense.amount),
+                    amount: Number(expense.amount),
+                    expenseId: expense.id,
+                    sortOrder: lineItems.length,
+                    taxable: expense.taxTreatment === 'taxable',
                 });
                 lineItems.push(lineItem);
             }
@@ -152,6 +178,14 @@ export class InvoicesService {
         if (dto.timeEntryIds && dto.timeEntryIds.length > 0) {
             await this.timeEntryRepo.update(
                 { id: In(dto.timeEntryIds), firmId },
+                { billed: true, invoiceId: invoice.id },
+            );
+        }
+
+        // Mark expenses as billed
+        if (dto.expenseIds && dto.expenseIds.length > 0) {
+            await this.expenseRepo.update(
+                { id: In(dto.expenseIds), firmId },
                 { billed: true, invoiceId: invoice.id },
             );
         }
@@ -391,14 +425,19 @@ export class InvoicesService {
             0,
         );
 
+        const taxableSubtotal = (invoice.lineItems || []).reduce(
+            (sum, item) => sum + (item.taxable ? Number(item.amount) : 0),
+            0,
+        );
+
         const rates = TAX_RATES[province];
         const round = (n: number) => Math.round(n * 100) / 100;
 
-        const taxGst = round(subtotal * rates.gst);
-        const taxPst = round(subtotal * rates.pst);
-        const taxHst = round(subtotal * rates.hst);
+        const taxGst = round(taxableSubtotal * rates.gst);
+        const taxPst = round(taxableSubtotal * rates.pst);
+        const taxHst = round(taxableSubtotal * rates.hst);
         // Note: QST is stored in taxPst for Quebec
-        const taxQst = round(subtotal * rates.qst);
+        const taxQst = round(taxableSubtotal * rates.qst);
 
         const total = round(subtotal + taxGst + taxPst + taxHst + taxQst);
         const balanceDue = round(total - Number(invoice.amountPaid));

@@ -177,7 +177,11 @@ export class ComplianceController {
                     role: user.role,
                     createdAt: user.createdAt,
                 },
-                auditLog: auditLogs,
+                auditLog: auditLogs.map(log => ({
+                    timestamp: log.createdAt,
+                    operation: log.operation,
+                    entityType: log.entityType,
+                })),
             },
         };
     }

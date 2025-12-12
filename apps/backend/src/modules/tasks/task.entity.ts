@@ -35,7 +35,7 @@ export class Task {
     description: string;
 
     @Column({ name: 'due_date', type: 'date', nullable: true })
-    dueDate: Date;
+    dueDate: Date | null;
 
     @Column({
         type: 'enum',

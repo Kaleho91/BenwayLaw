@@ -4,7 +4,7 @@ import {
     BadRequestException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository, EntityManager } from 'typeorm';
+import { Repository, EntityManager, DataSource } from 'typeorm';
 import { TrustAccount } from './trust-account.entity';
 import { TrustTransaction, TrustTransactionType } from './trust-transaction.entity';
 import { Client } from '../clients/client.entity';
@@ -34,9 +34,7 @@ export class TrustService {
         private readonly clientRepo: Repository<Client>,
         @InjectRepository(Matter)
         private readonly matterRepo: Repository<Matter>,
-        @InjectRepository(Invoice)
-        private readonly _invoiceRepo: Repository<Invoice>, // Used in transaction manager
-        private readonly entityManager: EntityManager,
+        private readonly dataSource: DataSource,
     ) { }
 
     // ==================== TRUST ACCOUNT MANAGEMENT ====================
@@ -118,7 +116,7 @@ export class TrustService {
         userId: string,
         dto: CreateDepositDto,
     ): Promise<TrustTransactionResponseDto> {
-        return this.entityManager.transaction(async (manager) => {
+        return this.dataSource.transaction(async (manager: EntityManager) => {
             // Verify account, client, and optionally matter belong to firm
             await this.validateTransaction(firmId, dto.trustAccountId, dto.clientId, dto.matterId);
 
@@ -164,7 +162,7 @@ export class TrustService {
         userId: string,
         dto: CreateTransferToFeesDto,
     ): Promise<TrustTransactionResponseDto> {
-        return this.entityManager.transaction(async (manager) => {
+        return this.dataSource.transaction(async (manager: EntityManager) => {
             // Validate transaction participants
             await this.validateTransaction(firmId, dto.trustAccountId, dto.clientId, dto.matterId);
 
@@ -242,7 +240,7 @@ export class TrustService {
         userId: string,
         dto: CreateRefundDto,
     ): Promise<TrustTransactionResponseDto> {
-        return this.entityManager.transaction(async (manager) => {
+        return this.dataSource.transaction(async (manager: EntityManager) => {
             await this.validateTransaction(firmId, dto.trustAccountId, dto.clientId, dto.matterId);
 
             const currentBalance = await this.getClientBalance(

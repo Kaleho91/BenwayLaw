@@ -18,7 +18,7 @@ export class PortalAuthService {
         @InjectRepository(Client)
         private readonly clientRepo: Repository<Client>,
         @InjectRepository(Firm)
-        private readonly firmRepo: Repository<Firm>,
+        // private readonly firmRepo: Repository<Firm>, // Removed unused dependency
         private readonly jwtService: JwtService,
     ) { }
 
