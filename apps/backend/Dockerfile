@@ -24,17 +24,19 @@ RUN pnpm --filter @maplelaw/shared build
 # Build backend
 RUN pnpm --filter @maplelaw/backend build
 
-# Production image - minimal
+# Production image - minimal, no pnpm needed
 FROM node:20-alpine AS production
 
 WORKDIR /app
 
-# Copy only what's needed for production
+# Copy the built backend dist
 COPY --from=builder /app/apps/backend/dist ./dist
-COPY --from=builder /app/apps/backend/package.json ./package.json
 
-# Install production dependencies only (no pnpm needed)
-RUN npm install --omit=dev
+# Copy the entire node_modules from builder (includes all deps resolved by pnpm)
+COPY --from=builder /app/node_modules ./node_modules
+
+# Copy the built shared package
+COPY --from=builder /app/packages/shared ./node_modules/@maplelaw/shared
 
 # Create uploads directory
 RUN mkdir -p /app/uploads
@@ -44,5 +46,4 @@ ENV PORT=3001
 
 EXPOSE 3001
 
-# Run with node directly
 CMD ["node", "dist/main.js"]
