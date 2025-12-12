@@ -1,7 +1,4 @@
 {
     "$schema": "https://openapi.vercel.sh/vercel.json",
-    "buildCommand": "cd ../.. && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/frontend build",
-    "outputDirectory": ".next",
-    "installCommand": "corepack enable && pnpm install",
     "framework": "nextjs"
 }
