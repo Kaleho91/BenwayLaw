@@ -15,9 +15,8 @@ services:
     runtime: node
     region: oregon
     plan: free
-    rootDir: apps/backend
-    buildCommand: cd ../.. && npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/backend build
-    startCommand: node dist/main.js
+    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/backend build
+    startCommand: cd apps/backend && node dist/main.js
     envVars:
       - key: NODE_ENV
         value: production
@@ -30,10 +29,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: FRONTEND_URL
-        fromService:
-          type: web
-          name: maplelaw-frontend
-          property: host
+        value: https://maplelaw-frontend.onrender.com
 
   # Frontend Next.js
   - type: web
@@ -41,14 +37,10 @@ services:
     runtime: node
     region: oregon
     plan: free
-    rootDir: apps/frontend
-    buildCommand: cd ../.. && npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/frontend build
-    startCommand: npm start
+    buildCommand: npm install -g pnpm && pnpm install && pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/frontend build
+    startCommand: cd apps/frontend && npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: NEXT_PUBLIC_API_URL
-        fromService:
-          type: web
-          name: maplelaw-api
-          property: host
+        value: https://maplelaw-api.onrender.com
