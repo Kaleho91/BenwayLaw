@@ -2,9 +2,7 @@
 const nextConfig = {
     reactStrictMode: true,
     transpilePackages: ['@maplelaw/shared'],
-    experimental: {
-        serverActions: true,
-    },
+    output: 'standalone',
 };
 
 module.exports = nextConfig;

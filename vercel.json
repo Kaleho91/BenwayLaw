@@ -1,0 +1,8 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "buildCommand": "pnpm --filter @maplelaw/shared build && pnpm --filter @maplelaw/frontend build",
+    "outputDirectory": "apps/frontend/.next",
+    "installCommand": "corepack enable && pnpm install",
+    "framework": "nextjs",
+    "ignoreCommand": "git diff HEAD^ HEAD --quiet -- ."
+}
