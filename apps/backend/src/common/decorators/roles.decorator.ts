@@ -1,8 +1,0 @@
-import { SetMetadata } from '@nestjs/common';
-import { ROLES_KEY } from '../guards/roles.guard';
-
-/**
- * Decorator to specify required roles for a route
- * Usage: @Roles('admin', 'lawyer')
- */
-export const Roles = (...roles: string[]) => SetMetadata(ROLES_KEY, roles);
