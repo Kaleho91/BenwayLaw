@@ -11,7 +11,7 @@ interface Message {
     id: string;
     role: 'user' | 'assistant';
     content: string;
-    actions?: { label: string; path?: string; followUp?: string }[];
+    actions?: { label?: string; path?: string; followUp?: string }[];
 }
 
 interface FirmContext {
@@ -63,7 +63,7 @@ async function getSmartResponse(
     question: string,
     ctx: FirmContext,
     firmName: string
-): Promise<{ content: string; actions: { label: string; path?: string; followUp?: string }[] }> {
+): Promise<{ content: string; actions: { label?: string; path?: string; followUp?: string }[] }> {
     const q = question.toLowerCase();
     const fmt = (n: number) => `$${n.toLocaleString()}`;
 
@@ -355,8 +355,8 @@ export function AIAssistant() {
                                 <div className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                                     <div
                                         className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed ${msg.role === 'user'
-                                                ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-br-md'
-                                                : 'bg-white border border-gray-200 text-gray-700 rounded-bl-md shadow-sm'
+                                            ? 'bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-br-md'
+                                            : 'bg-white border border-gray-200 text-gray-700 rounded-bl-md shadow-sm'
                                             }`}
                                         dangerouslySetInnerHTML={{
                                             __html: msg.content
@@ -373,8 +373,8 @@ export function AIAssistant() {
                                                 key={i}
                                                 onClick={() => handleAction(action)}
                                                 className={`text-xs px-3 py-1.5 rounded-full transition-colors ${action.path
-                                                        ? 'bg-orange-100 text-orange-700 hover:bg-orange-200'
-                                                        : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                                    ? 'bg-orange-100 text-orange-700 hover:bg-orange-200'
+                                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                                     }`}
                                             >
                                                 {action.label || action.followUp}
