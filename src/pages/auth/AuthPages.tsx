@@ -37,7 +37,7 @@ export function LoginPage() {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <span className="text-6xl">🍁</span>
-                    <h1 className="text-3xl font-bold text-white mt-4">MapleLaw</h1>
+                    <h1 className="text-3xl font-bold text-white mt-4">BenwayLaw</h1>
                     <p className="text-gray-400 mt-2">Legal Practice Management</p>
                 </div>
 
@@ -159,7 +159,7 @@ export function RegisterPage() {
                 {/* Logo */}
                 <div className="text-center mb-8">
                     <span className="text-6xl">🍁</span>
-                    <h1 className="text-3xl font-bold text-white mt-4">MapleLaw</h1>
+                    <h1 className="text-3xl font-bold text-white mt-4">BenwayLaw</h1>
                     <p className="text-gray-400 mt-2">Start your free trial</p>
                 </div>
 

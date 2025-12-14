@@ -1,8 +1,8 @@
-# MapleLaw 🍁
+# BenwayLaw 🍁
 
 **Canada-first, AI-native legal practice management for small-to-mid Canadian law firms.**
 
-MapleLaw is a "system of intelligence" that reduces cognitive load with proactive guidance, prevents revenue leakage via smart time + billing signals, and improves compliance posture with trust accounting guardrails.
+BenwayLaw is a "system of intelligence" that reduces cognitive load with proactive guidance, prevents revenue leakage via smart time + billing signals, and improves compliance posture with trust accounting guardrails.
 
 ## Features
 
@@ -98,7 +98,7 @@ maplelaw/
 
 ## AI Guardrails
 
-MapleLaw's AI is designed to be **assistive, not authoritative**:
+BenwayLaw's AI is designed to be **assistive, not authoritative**:
 
 - ✅ AI can create drafts, suggest time entries, flag risks
 - ✅ AI logs all suggestions and actions to `ai_events` and `audit_logs`

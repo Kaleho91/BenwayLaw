@@ -198,7 +198,7 @@ async function getSmartResponse(
     // Greeting / help
     if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('help')) {
         return {
-            content: `Hello! I'm your MapleLaw AI assistant for **${firmName}**. Here's a quick overview:\n\n• **Unbilled WIP:** ${fmt(ctx.unbilledAmount)}\n• **Outstanding A/R:** ${fmt(ctx.outstandingAR)}\n• **Active Matters:** ${ctx.activeMatters}\n• **Trust Balance:** ${fmt(ctx.trustBalance)}\n\nWhat would you like to explore?`,
+            content: `Hello! I'm your BenwayLaw AI assistant for **${firmName}**. Here's a quick overview:\n\n• **Unbilled WIP:** ${fmt(ctx.unbilledAmount)}\n• **Outstanding A/R:** ${fmt(ctx.outstandingAR)}\n• **Active Matters:** ${ctx.activeMatters}\n• **Trust Balance:** ${fmt(ctx.trustBalance)}\n\nWhat would you like to explore?`,
             actions: [
                 { followUp: 'What should I focus on today?' },
                 { followUp: 'Show me my unbilled time' },
@@ -261,7 +261,7 @@ export function AIAssistant() {
             setMessages([{
                 id: '1',
                 role: 'assistant',
-                content: `Hi! I'm your MapleLaw AI assistant. Here's a quick snapshot of **${firm?.name}**:\n\n• **Unbilled WIP:** $${ctx.unbilledAmount.toLocaleString()}\n• **Outstanding A/R:** $${ctx.outstandingAR.toLocaleString()}\n• **Active Matters:** ${ctx.activeMatters}\n\nWhat would you like to know?`,
+                content: `Hi! I'm your BenwayLaw AI assistant. Here's a quick snapshot of **${firm?.name}**:\n\n• **Unbilled WIP:** $${ctx.unbilledAmount.toLocaleString()}\n• **Outstanding A/R:** $${ctx.outstandingAR.toLocaleString()}\n• **Active Matters:** ${ctx.activeMatters}\n\nWhat would you like to know?`,
                 actions: [
                     { followUp: 'What should I focus on today?' },
                     { followUp: 'Show me my unbilled time' },
@@ -342,7 +342,7 @@ export function AIAssistant() {
                                 </svg>
                             </div>
                             <div>
-                                <p className="text-white font-semibold">MapleLaw AI</p>
+                                <p className="text-white font-semibold">BenwayLaw AI</p>
                                 <p className="text-white/70 text-xs">Your intelligent legal assistant</p>
                             </div>
                         </div>

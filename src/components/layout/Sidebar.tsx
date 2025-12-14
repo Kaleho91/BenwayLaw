@@ -122,7 +122,7 @@ export function Sidebar() {
                     </svg>
                 </div>
                 <div>
-                    <span className="text-lg font-semibold tracking-tight">MapleLaw</span>
+                    <span className="text-lg font-semibold tracking-tight">BenwayLaw</span>
                     <p className="text-xs text-gray-400 truncate max-w-[140px]">{firm?.name}</p>
                 </div>
             </div>

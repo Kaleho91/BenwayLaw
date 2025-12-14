@@ -255,7 +255,7 @@ export function TrustPage() {
                         <div>
                             <p className="font-medium text-amber-800">Trust Account Compliance</p>
                             <p className="text-sm text-amber-700 mt-1">
-                                Trust funds must be handled in accordance with Law Society rules. MapleLaw's AI cannot execute trust transactions—all movements require explicit user confirmation.
+                                Trust funds must be handled in accordance with Law Society rules. BenwayLaw's AI cannot execute trust transactions—all movements require explicit user confirmation.
                             </p>
                         </div>
                     </div>

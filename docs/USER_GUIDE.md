@@ -1,6 +1,6 @@
-# How to Use MapleLaw 🍁
+# How to Use BenwayLaw 🍁
 
-A guide for non-technical users to get started with MapleLaw.
+A guide for non-technical users to get started with BenwayLaw.
 
 ---
 
@@ -8,7 +8,7 @@ A guide for non-technical users to get started with MapleLaw.
 
 ### 1. Create Your Account
 
-1. Visit the MapleLaw app
+1. Visit the BenwayLaw app
 2. Click **"Register your firm"**
 3. Fill in your details:
    - Your name and email
