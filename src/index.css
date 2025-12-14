@@ -1,0 +1,371 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================================
+   MapleLaw Design System
+   ============================================================================ */
+
+:root {
+  --maple-primary: #EC6C28;
+  --maple-primary-dark: #d45a1e;
+  --maple-primary-light: #f49a6e;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  @apply bg-gray-50 text-gray-900 antialiased;
+}
+
+/* Focus styles */
+*:focus-visible {
+  @apply outline-2 outline-offset-2 outline-maple-500;
+}
+
+/* ============================================================================
+   Layout Components
+   ============================================================================ */
+
+.sidebar {
+  @apply fixed left-0 top-0 h-full w-64 bg-gray-900 text-white flex flex-col z-40;
+}
+
+.sidebar-logo {
+  @apply px-6 py-5 border-b border-gray-800 flex items-center gap-3;
+}
+
+.sidebar-nav {
+  @apply flex-1 overflow-y-auto py-4;
+}
+
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-2.5 mx-2 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800/50 transition-all duration-200;
+}
+
+.sidebar-link.active {
+  @apply text-white bg-gradient-to-r from-orange-500/20 to-red-500/10 border-l-2 border-orange-500;
+}
+
+.main-content {
+  @apply ml-64 min-h-screen;
+}
+
+.page-header {
+  @apply bg-white border-b border-gray-200 px-8 py-6;
+}
+
+.page-title {
+  @apply text-2xl font-semibold text-gray-900;
+}
+
+.page-body {
+  @apply p-8;
+}
+
+/* ============================================================================
+   Card Components
+   ============================================================================ */
+
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100;
+}
+
+.card-header {
+  @apply px-6 py-4 border-b border-gray-100;
+}
+
+.card-body {
+  @apply p-6;
+}
+
+.stat-card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
+}
+
+.stat-value {
+  @apply text-3xl font-bold text-gray-900;
+}
+
+.stat-label {
+  @apply text-sm text-gray-500 mt-1;
+}
+
+/* ============================================================================
+   Button Components
+   ============================================================================ */
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-maple-500 text-white hover:bg-maple-600 active:bg-maple-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-700 hover:bg-gray-200 active:bg-gray-300;
+}
+
+.btn-outline {
+  @apply border-2 border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50;
+}
+
+.btn-danger {
+  @apply bg-danger-500 text-white hover:bg-danger-600;
+}
+
+.btn-ghost {
+  @apply text-gray-600 hover:text-gray-900 hover:bg-gray-100;
+}
+
+.btn-sm {
+  @apply text-sm px-3 py-1.5;
+}
+
+.btn-lg {
+  @apply text-lg px-6 py-3;
+}
+
+/* ============================================================================
+   Form Components
+   ============================================================================ */
+
+.form-group {
+  @apply mb-4;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-700 mb-1;
+}
+
+.form-input {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maple-500 focus:border-maple-500 transition-colors;
+}
+
+.form-input:disabled {
+  @apply bg-gray-100 cursor-not-allowed;
+}
+
+.form-select {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maple-500 focus:border-maple-500 bg-white;
+}
+
+.form-textarea {
+  @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maple-500 focus:border-maple-500 resize-none;
+}
+
+.form-error {
+  @apply text-sm text-danger-500 mt-1;
+}
+
+.form-hint {
+  @apply text-sm text-gray-500 mt-1;
+}
+
+/* ============================================================================
+   Table Components
+   ============================================================================ */
+
+.table-container {
+  @apply overflow-x-auto;
+}
+
+.table {
+  @apply w-full;
+}
+
+.table th {
+  @apply px-6 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider bg-gray-50 border-b border-gray-200;
+}
+
+.table td {
+  @apply px-6 py-4 text-sm text-gray-900 border-b border-gray-100;
+}
+
+.table tr:hover td {
+  @apply bg-gray-50;
+}
+
+/* ============================================================================
+   Badge Components
+   ============================================================================ */
+
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+.badge-active {
+  @apply bg-trust-100 text-trust-700;
+}
+
+.badge-pending {
+  @apply bg-warning-100 text-warning-600;
+}
+
+.badge-closed {
+  @apply bg-gray-100 text-gray-600;
+}
+
+.badge-draft {
+  @apply bg-gray-100 text-gray-600;
+}
+
+.badge-sent {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.badge-partial {
+  @apply bg-warning-100 text-warning-600;
+}
+
+.badge-paid {
+  @apply bg-trust-100 text-trust-700;
+}
+
+/* ============================================================================
+   AI Command Bar
+   ============================================================================ */
+
+.command-bar-overlay {
+  @apply fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-[20vh];
+}
+
+.command-bar {
+  @apply w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden;
+}
+
+.command-bar-input {
+  @apply w-full px-6 py-4 text-lg border-0 focus:ring-0 focus:outline-none;
+}
+
+.command-bar-results {
+  @apply max-h-96 overflow-y-auto border-t border-gray-100;
+}
+
+.command-bar-result {
+  @apply px-6 py-3 hover:bg-gray-50 cursor-pointer flex items-center gap-3;
+}
+
+.command-bar-result.selected {
+  @apply bg-maple-50;
+}
+
+.ai-suggestion-badge {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium bg-purple-100 text-purple-700;
+}
+
+/* ============================================================================
+   Trust Accounting Specific
+   ============================================================================ */
+
+.trust-balance {
+  @apply text-trust-600 font-semibold;
+}
+
+.trust-warning {
+  @apply bg-warning-50 border border-warning-200 rounded-lg p-4 text-warning-600;
+}
+
+.trust-danger {
+  @apply bg-danger-50 border border-danger-200 rounded-lg p-4 text-danger-600;
+}
+
+.reconciliation-match {
+  @apply bg-trust-50 border border-trust-200;
+}
+
+.reconciliation-mismatch {
+  @apply bg-danger-50 border border-danger-200;
+}
+
+/* ============================================================================
+   Risk & Opportunities Panel
+   ============================================================================ */
+
+.risk-item {
+  @apply flex items-start gap-3 p-4 rounded-lg;
+}
+
+.risk-item.high {
+  @apply bg-danger-50 border border-danger-100;
+}
+
+.risk-item.medium {
+  @apply bg-warning-50 border border-warning-100;
+}
+
+.risk-item.low {
+  @apply bg-blue-50 border border-blue-100;
+}
+
+/* ============================================================================
+   Animations
+   ============================================================================ */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-subtle {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.2s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* ============================================================================
+   Responsive
+   ============================================================================ */
+
+@media (max-width: 768px) {
+  .sidebar {
+    @apply w-full h-auto fixed bottom-0 top-auto flex-row;
+  }
+
+  .main-content {
+    @apply ml-0 mb-16;
+  }
+
+  .sidebar-nav {
+    @apply flex-row overflow-x-auto py-0;
+  }
+
+  .sidebar-link {
+    @apply flex-col gap-1 px-4 py-2 text-xs;
+  }
+}

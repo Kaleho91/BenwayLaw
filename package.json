@@ -1,34 +1,39 @@
 {
-    "name": "maplelaw",
-    "version": "0.1.0",
-    "private": true,
-    "description": "Canada-first legal practice management SaaS",
-    "keywords": [
-        "legal",
-        "practice-management",
-        "canada",
-        "law-firm",
-        "trust-accounting"
-    ],
-    "license": "UNLICENSED",
-    "scripts": {
-        "dev": "pnpm -r --parallel dev",
-        "build": "pnpm -r build",
-        "test": "pnpm -r test",
-        "lint": "pnpm -r lint",
-        "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
-        "typecheck": "pnpm -r typecheck",
-        "db:migrate": "pnpm --filter backend db:migrate",
-        "db:seed": "pnpm --filter backend db:seed"
-    },
-    "devDependencies": {
-        "@types/node": "^20.10.0",
-        "prettier": "^3.1.0",
-        "typescript": "^5.3.0"
-    },
-    "engines": {
-        "node": ">=20.0.0",
-        "pnpm": ">=8.0.0"
-    },
-    "packageManager": "pnpm@8.15.0"
+  "name": "maplelaw",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "@tanstack/react-query": "^5.51.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.0",
+    "zod": "^3.23.8",
+    "date-fns": "^3.6.0",
+    "clsx": "^2.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^9.8.0",
+    "eslint-plugin-react-hooks": "^5.1.0-rc.0",
+    "eslint-plugin-react-refresh": "^0.4.9",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7",
+    "typescript": "~5.5.3",
+    "typescript-eslint": "^8.0.0",
+    "vite": "^5.4.0"
+  }
 }

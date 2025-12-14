@@ -1,41 +1,6 @@
-# Dependencies
 node_modules
-.pnpm-store
-
-# Build outputs
 dist
-.next
-out
-build
-
-# Environment files
 .env
 .env.local
-.env.*.local
-
-# IDE
-.idea
-.vscode
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Test coverage
-coverage
-
-# Logs
 *.log
-npm-debug.log*
-pnpm-debug.log*
-
-# Database
-*.sqlite
-*.db
-
-# Temporary files
-tmp
-temp
-.cache
+.DS_Store

@@ -1,0 +1,27 @@
+<svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- MapleLaw Logo - Scales of Justice + Maple Leaf -->
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#F97316"/>
+      <stop offset="100%" style="stop-color:#DC2626"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Maple Leaf Base (simplified, bold) -->
+  <path 
+    d="M20 4L17 10L11 8L14 14L8 16L14 18L11 24L17 22L20 32L23 22L29 24L26 18L32 16L26 14L29 8L23 10L20 4Z" 
+    fill="url(#brandGrad)"
+  />
+  
+  <!-- Scales overlay - balanced beam -->
+  <line x1="12" y1="17" x2="28" y2="17" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Left scale pan -->
+  <path d="M10 17L8 22C8 23 9 24 12 24C15 24 16 23 16 22L14 17" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Right scale pan -->
+  <path d="M26 17L24 22C24 23 25 24 28 24C31 24 32 23 32 22L30 17" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  
+  <!-- Center pillar -->
+  <line x1="20" y1="14" x2="20" y2="19" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+</svg>
